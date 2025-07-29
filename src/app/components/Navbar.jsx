@@ -59,10 +59,14 @@ export default function Navbar() {
 
         {/* Buttons */}
         <div className="flex gap-2">
-          <Button variant="outline" className="text-sm">
-            Login
-          </Button>
-          <Button className="text-sm">Sign Up</Button>
+          <Link href="/login" className="cursor-pointer">
+            <Button variant="outline" className="text-sm cursor-pointer px-8">
+              Login
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button className="text-sm cursor-pointer px-8">Sign Up</Button>
+          </Link>
         </div>
       </div>
     </header>

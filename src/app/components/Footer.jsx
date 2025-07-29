@@ -10,20 +10,18 @@ export default function Footer() {
     <footer className="bg-black text-white py-10 px-6 md:px-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Logo and description */}
-        <div className="col-span-1 space-y-4">
+        <div className="col-span-1 space-y-2">
           <img src="/logo.png" alt="Site Logo" width={100} height={40} />
-          <p className="text-sm">
+          <p className="text-[12px]">
             Share your study notes, summaries, flashcards, study guides, and
-            other learning resources with fellow students. Our platform makes it
-            easy for learners to find and download helpful materials to support
-            their studies — completely free.{" "}
+            other learning resources with fellow students.
           </p>
           <p className="text-xs text-gray-400">
-            © YourCompany 2010–2025
+            © StudyStack 2025
             <br />
             Company Registration Number: 12345678
           </p>
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-3 pt-1">
             <Button variant="ghost" size="icon">
               <Instagram className="w-5 h-5 text-white" />
             </Button>

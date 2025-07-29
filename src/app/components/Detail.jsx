@@ -4,7 +4,7 @@ export default function Detail() {
       <h1 className="text-3xl font-semibold">
         Share Knowledge, Empower Others.
       </h1>
-      <p className="text-lg font-medium ">
+      <p className="text-lg font-normal text-center">
         Our platform offers a simple and fast way to upload and download study
         notes. Whether it's lecture summaries, course materials, or exam prep
         guides, you can easily share and access valuable resources. Students can

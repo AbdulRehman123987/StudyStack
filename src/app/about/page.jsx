@@ -25,7 +25,7 @@ export default function AboutPage() {
           <img
             src="/banner.jpg"
             alt="Upload and Download Notes"
-            className="w-full h-full "
+            className="w-full h-full object-cover "
           />
         </div>
 
