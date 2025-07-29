@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -14,7 +15,9 @@ export default function Hero() {
             easy for learners to find and download helpful materials to support
             their studies — completely free.
           </p>
-          <Button className=" cursor-pointer my-4">Sign Up</Button>
+          <Link href="/signup">
+            <Button className=" cursor-pointer my-4">Sign Up</Button>
+          </Link>
         </div>
       </div>
     </>

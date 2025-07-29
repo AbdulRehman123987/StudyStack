@@ -9,7 +9,7 @@ const icons = {
 export default function Card({ step }) {
   return (
     <div
-      className={`w-[270px] h-[400px] relative ${step.cardbackgroundColor} flex flex-col justify-center items-center gap-10 px-4`}
+      className={`w-[270px] h-[350px] relative ${step.cardbackgroundColor} flex flex-col justify-center items-center gap-10 px-4`}
     >
       <div
         className={`w-10 h-10 absolute top-8 left-8 ${step.color} flex justify-center items-center rounded-3xl text-white font-bold`}
