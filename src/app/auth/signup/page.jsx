@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Loader from "@/app/components/Loader";
+import { AuthContext } from "@/context/AuthContext";
 
 const formSchema = z.object({
   name: z
@@ -30,6 +31,7 @@ const formSchema = z.object({
 
 export default function SignupPage() {
   const router = useRouter();
+  const { refreshAuth, getUser } = useContext(AuthContext);
   const [loading, setloading] = useState(false);
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -43,7 +45,7 @@ export default function SignupPage() {
   const onSubmit = async (values) => {
     try {
       setloading(true);
-      const response = await fetch("/api/auth", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +54,10 @@ export default function SignupPage() {
       });
 
       const data = await response.json();
-      if (response.ok) {
+      if (response.ok && data.user) {
+        localStorage.setItem("userID", data.user.id);
+        refreshAuth();
+        getUser();
         router.push("/dashboard");
       } else {
         alert(data.error || "Signup failed");

@@ -5,17 +5,6 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export async function GET(req, res) {
-  try {
-    const db = await getDBConnection();
-    const [rows] = await db.execute("SELECT * FROM users");
-    return NextResponse.json(rows);
-  } catch (err) {
-    console.error("DB error:", err);
-    return NextResponse.json({ message: "Database Error" }, { status: 500 });
-  }
-}
-
 export async function POST(req) {
   try {
     const { name, email, password } = await req.json();
@@ -28,10 +17,8 @@ export async function POST(req) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const db = await getDBConnection();
 
-    // Optional: check if user already exists
     const [existing] = await db.execute("SELECT * FROM users WHERE email = ?", [
       email,
     ]);
@@ -42,21 +29,31 @@ export async function POST(req) {
       );
     }
 
-    // Insert user into DB
-    await db.execute(
+    const [result] = await db.execute(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [name, email, hashedPassword]
     );
 
-    const token = jwt.sign({ name, email }, JWT_SECRET, { expiresIn: "7d" });
+    const insertedUserId = result.insertId; // ✅ this is the user ID
+
+    const token = jwt.sign({ id: insertedUserId, name, email }, JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
     const response = NextResponse.json(
-      { message: "Signup successful" },
+      {
+        message: "Signup successful",
+        user: {
+          id: insertedUserId,
+          name,
+          email,
+        },
+      },
       { status: 201 }
     );
 
     response.cookies.set("token", token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 60 * 60 * 24 * 7,

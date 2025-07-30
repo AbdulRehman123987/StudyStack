@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { Home, User, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: Home },
@@ -11,9 +15,23 @@ const navItems = [
 ];
 
 export default function Sidebar() {
+  const router = useRouter();
+  const { refreshAuth, getUser, currentUser } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout");
+      refreshAuth();
+      localStorage.removeItem("userID");
+      getUser();
+      router.push("/auth/login");
+    } catch (error) {
+      console.log("Logout error", error);
+    }
+  };
   return (
-    <aside className="w-64 bg-white shadow-md border-r border-gray-200 hidden md:block">
-      <div className="p-6 font-bold text-xl">Abdul Rehman</div>
+    <aside className="w-64 h-screen relative shadow-md border-r border-gray-200 hidden md:block">
+      <div className="p-6 font-bold text-xl">{currentUser?.name}</div>
       <nav className="flex flex-col space-y-2 p-4">
         {navItems.map((item) => (
           <Link
@@ -26,6 +44,13 @@ export default function Sidebar() {
           </Link>
         ))}
       </nav>
+
+      <Button
+        className="w-full rounded-[5px] cursor-pointer absolute bottom-8"
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
     </aside>
   );
 }

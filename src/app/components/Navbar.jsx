@@ -4,19 +4,15 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function Navbar() {
-  useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1];
+  const { isAuthenticated, currentUser } = useContext(AuthContext);
 
-    console.log("Token:", token);
-  }, []);
   return (
     <header className="w-full shadow-sm bg-white sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -28,7 +24,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Navigation Links */}
         <NavigationMenu>
           <NavigationMenuList className="hidden md:flex gap-6">
             <NavigationMenuItem>
@@ -47,36 +42,32 @@ export default function Navbar() {
                 About
               </Link>
             </NavigationMenuItem>
-            {/* <NavigationMenuItem>
-              <Link
-                href="/services"
-                className="text-gray-700 hover:text-blue-600 transition"
-              >
-                Services
-              </Link>
-            </NavigationMenuItem> */}
-            {/* <NavigationMenuItem>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-blue-600 transition"
-              >
-                Contact
-              </Link>
-            </NavigationMenuItem> */}
           </NavigationMenuList>
         </NavigationMenu>
 
         {/* Buttons */}
-        <div className="flex gap-2">
-          <Link href="/auth/login" className="cursor-pointer">
-            <Button variant="outline" className="text-sm cursor-pointer px-8">
-              Login
-            </Button>
-          </Link>
-          <Link href="/auth/signup">
-            <Button className="text-sm cursor-pointer px-8">Sign Up</Button>
-          </Link>
-        </div>
+        {isAuthenticated ? (
+          <div className="flex justify-center items-center gap-2">
+            <h1 className=" text-lg font-medium">{currentUser?.name}</h1>
+            <Link href="/dashboard">
+              <Avatar className="w-10 h-10">
+                <AvatarImage src="/avatar.jpg" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <Link href="/auth/login" className="cursor-pointer">
+              <Button variant="outline" className="text-sm cursor-pointer px-8">
+                Login
+              </Button>
+            </Link>
+            <Link href="/auth/signup">
+              <Button className="text-sm cursor-pointer px-8">Sign Up</Button>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
