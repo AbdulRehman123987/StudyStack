@@ -15,7 +15,7 @@ export default function Hero() {
             easy for learners to find and download helpful materials to support
             their studies — completely free.
           </p>
-          <Link href="/signup">
+          <Link href="/auth/signup">
             <Button className=" cursor-pointer my-4">Sign Up</Button>
           </Link>
         </div>

@@ -6,10 +6,19 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Navbar() {
+  useEffect(() => {
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
+    console.log("Token:", token);
+  }, []);
   return (
-    <header className="w-full shadow-sm bg-white">
+    <header className="w-full shadow-sm bg-white sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex justify-center items-center gap-2">
@@ -59,12 +68,12 @@ export default function Navbar() {
 
         {/* Buttons */}
         <div className="flex gap-2">
-          <Link href="/login" className="cursor-pointer">
+          <Link href="/auth/login" className="cursor-pointer">
             <Button variant="outline" className="text-sm cursor-pointer px-8">
               Login
             </Button>
           </Link>
-          <Link href="/signup">
+          <Link href="/auth/signup">
             <Button className="text-sm cursor-pointer px-8">Sign Up</Button>
           </Link>
         </div>
