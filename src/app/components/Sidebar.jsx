@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home, User, FileText } from "lucide-react";
+import { Home, User, FileText, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: Home },
   { name: "My Notes", href: "/dashboard/notes", icon: FileText },
+  { name: "Upload Notes", href: "/dashboard/upload-notes", icon: Upload },
   { name: "Profile", href: "/dashboard/profile", icon: User },
 ];
 
