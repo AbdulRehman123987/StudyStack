@@ -27,12 +27,21 @@ export default function Navbar() {
         <NavigationMenu>
           <NavigationMenuList className="hidden md:flex gap-6">
             <NavigationMenuItem>
-              <Link
-                href="/"
-                className="text-gray-700 hover:text-blue-600 transition"
-              >
-                Home
-              </Link>
+              {isAuthenticated ? (
+                <Link
+                  href="/browse"
+                  className="text-gray-700 hover:text-blue-600 transition"
+                >
+                  Browse
+                </Link>
+              ) : (
+                <Link
+                  href="/"
+                  className="text-gray-700 hover:text-blue-600 transition"
+                >
+                  Home
+                </Link>
+              )}
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link
