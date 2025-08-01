@@ -28,8 +28,6 @@ export default function NoteProvider({ children }) {
     }
   };
 
-  console.log(allNotes);
-
   useEffect(() => {
     fetchAllNotes();
   }, []);

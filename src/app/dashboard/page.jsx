@@ -46,7 +46,7 @@ export default function DashboardPage() {
 
       <div>
         <h2 className="text-2xl font-semibold mb-4">My Uploads</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="flex gap-4 flex-wrap">
           {myNotes?.map((note, index) => (
             <div key={index}>
               <NoteCard note={note} />

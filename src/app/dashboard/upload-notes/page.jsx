@@ -69,7 +69,6 @@ export default function UploadNotesPage() {
       });
 
       const data = await res.json();
-      console.log(data);
 
       if (res.ok) {
         e.target.reset();

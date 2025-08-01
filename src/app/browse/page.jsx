@@ -7,7 +7,6 @@ import { NoteContext } from "@/context/NoteContext";
 
 export default function Browse() {
   const { allNotes } = useContext(NoteContext);
-  console.log(allNotes);
   const scienceNotes = allNotes.filter((note) => note.subject == "science");
   const mathNotes = allNotes.filter((note) => note.subject == "math");
   return (

@@ -41,7 +41,7 @@ export default function NoteViewPage() {
 
       for (let i = 0; i < files.length; i++) {
         const img = new Image();
-        img.crossOrigin = "Anonymous"; // Allow CORS for images
+        img.crossOrigin = "Anonymous";
 
         await new Promise((resolve, reject) => {
           img.onload = () => {
@@ -69,7 +69,11 @@ export default function NoteViewPage() {
   };
 
   const handleLike = async () => {
-    await fetch(`/api/notes/${id}/like`, { method: "POST" });
+    await fetch(`/api/notes/like`, {
+      method: "POST",
+      body: JSON.stringify({ userId: currentUser.id, noteId: note.id }),
+      headers: { "Content-Type": "application/json" },
+    });
   };
 
   const handleCommentSubmit = async () => {
@@ -83,9 +87,6 @@ export default function NoteViewPage() {
     setComments((prev) => [...prev, added.comment]);
     setNewComment("");
   };
-
-  console.log("Detail", note);
-  console.log("comments", comments);
 
   if (!note) return <div className="p-4">Loading...</div>;
 

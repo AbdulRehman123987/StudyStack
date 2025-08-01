@@ -40,8 +40,6 @@ export async function GET(req, { params }) {
       [id]
     );
 
-    console.log(comments);
-
     return NextResponse.json({ note, comments });
   } catch (error) {
     console.error("Error fetching note:", error);
