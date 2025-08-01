@@ -24,14 +24,25 @@ export async function GET(req, { params }) {
     );
     note.uploaded_by = users[0] || null;
 
-    // const [comments] = await db.execute(`
-    //   SELECT comments.*, users.name, users.image
-    //   FROM comments
-    //   JOIN users ON comments.user_id = users.id
-    //   WHERE note_id = ? ORDER BY created_at ASC
-    // `, [id]);
+    const [comments] = await db.execute(
+      `
+  SELECT 
+    comments.id,
+    comments.text,
+    comments.created_at,
+    users.name,
+    users.email
+  FROM comments
+  JOIN users ON comments.user_id = users.id
+  WHERE comments.note_id = ?
+  ORDER BY comments.created_at ASC
+  `,
+      [id]
+    );
 
-    return NextResponse.json({ note });
+    console.log(comments);
+
+    return NextResponse.json({ note, comments });
   } catch (error) {
     console.error("Error fetching note:", error);
     return NextResponse.json(

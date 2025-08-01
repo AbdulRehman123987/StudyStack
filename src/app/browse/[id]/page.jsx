@@ -25,7 +25,7 @@ export default function NoteViewPage() {
       const res = await fetch(`/api/notes/${id}`);
       const data = await res.json();
       setNote(data.note);
-      // setComments(data.comments);
+      setComments(data.comments);
     };
     fetchNote();
   }, [id]);
@@ -43,7 +43,7 @@ export default function NoteViewPage() {
     if (!newComment.trim()) return;
     const res = await fetch(`/api/notes/${id}/comment`, {
       method: "POST",
-      body: JSON.stringify({ text: newComment }),
+      body: JSON.stringify({ text: newComment, user_id: currentUser.id }),
       headers: { "Content-Type": "application/json" },
     });
     const added = await res.json();
@@ -52,6 +52,7 @@ export default function NoteViewPage() {
   };
 
   console.log("Detail", note);
+  console.log("comments", comments);
 
   if (!note) return <div className="p-4">Loading...</div>;
 
@@ -130,14 +131,36 @@ export default function NoteViewPage() {
           </button>
         </div>
 
-        <div className="space-y-3">
-          {comments.length === 0 && <p>No comments yet.</p>}
-          {comments.map((cmt, index) => (
-            <div key={index} className="bg-white p-3 rounded-lg shadow-sm">
-              <div className="font-semibold">{cmt.user.name}</div>
-              <p className="text-gray-700">{cmt.text}</p>
-            </div>
-          ))}
+        <div className="space-y-6">
+          {comments.length === 0 ? (
+            <p className="text-gray-500 text-sm italic">No comments yet.</p>
+          ) : (
+            comments.map((cmt, index) => (
+              <div
+                key={index}
+                className="bg-white p-4 rounded-xl shadow border border-gray-100"
+              >
+                <div className="flex items-center gap-4 mb-2">
+                  <img
+                    src="/avatar.jpg"
+                    alt={`${cmt.name}-avatar`}
+                    className="w-10 h-10 rounded-full object-cover border"
+                  />
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-800">
+                      {cmt.name}
+                    </h4>
+                    <p className="text-xs text-gray-500">
+                      {new Date(cmt.created_at).toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  {cmt.text}
+                </p>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
