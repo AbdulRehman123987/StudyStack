@@ -12,20 +12,24 @@ import { Card, CardContent } from "@/components/ui/card";
 export function AutoCarousel() {
   const plugin = React.useRef(
     Autoplay({
-      delay: 2500, // 2.5 seconds delay between slides
+      delay: 2500,
       stopOnInteraction: false,
       stopOnMouseEnter: true,
     })
   );
 
-  const items = ["/aboutBanner.jpg", "/aboutBanner2.jpg", "/banner.jpg"];
+  const items = [
+    "/browseBanner.jpg",
+    "/browseBanner2.jpg",
+    "/browseBanner3.jpg",
+  ];
 
   return (
     <Carousel
       plugins={[plugin.current]}
       className="w-full"
       opts={{
-        loop: true, // 🔁 Enables infinite looping
+        loop: true,
       }}
     >
       <CarouselContent>

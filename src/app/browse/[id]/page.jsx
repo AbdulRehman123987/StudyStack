@@ -57,9 +57,9 @@ export default function NoteViewPage() {
   if (!note) return <div className="p-4">Loading...</div>;
 
   return (
-    <div className="max-w-5xl mx-auto p-4">
+    <div className="w-[90%] mx-auto p-4">
       {/* Note Images */}
-      <Carousel className="w-full max-w-4xl mx-auto mb-8">
+      <Carousel className="w-full  mx-auto mb-8">
         <CarouselContent>
           {note?.file_urls?.map((file, idx) => (
             <CarouselItem key={idx} className="flex justify-center">
@@ -71,8 +71,8 @@ export default function NoteViewPage() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="cursor-pointer" />
+        <CarouselNext className="cursor-pointer" />
       </Carousel>
 
       {/* Title + Description */}
