@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { NoteContext } from "@/context/NoteContext";
 import { AuthContext } from "@/context/AuthContext";
+import { jsPDF } from "jspdf";
 import {
   Carousel,
   CarouselContent,
@@ -30,9 +31,41 @@ export default function NoteViewPage() {
     fetchNote();
   }, [id]);
 
-  const handleDownload = () => {
-    // If backend provides a zip file or downloads individually
-    window.open(note.download_url, "_blank");
+  const handleDownload = async () => {
+    try {
+      if (!note || !note.file_urls || note.file_urls.length === 0) return;
+
+      const fileType = note.file_type;
+      const files = note.file_urls;
+      const doc = new jsPDF();
+
+      for (let i = 0; i < files.length; i++) {
+        const img = new Image();
+        img.crossOrigin = "Anonymous"; // Allow CORS for images
+
+        await new Promise((resolve, reject) => {
+          img.onload = () => {
+            const imgWidth = 190;
+            const imgHeight = (img.height * imgWidth) / img.width;
+
+            doc.addImage(img, "JPEG", 10, 10, imgWidth, imgHeight);
+
+            if (i !== files.length - 1) doc.addPage();
+
+            resolve();
+          };
+          img.onerror = (err) => {
+            console.error("Image load failed:", err);
+            reject(err);
+          };
+          img.src = files[i].url;
+        });
+      }
+
+      doc.save(`${note.title || "note"}.pdf`);
+    } catch (err) {
+      console.error("Failed to generate PDF:", err);
+    }
   };
 
   const handleLike = async () => {
