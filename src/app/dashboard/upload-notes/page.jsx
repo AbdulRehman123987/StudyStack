@@ -63,7 +63,7 @@ export default function UploadNotesPage() {
         formData.append("files", selectedFiles[i]);
       }
 
-      const res = await fetch("/api/uploadNotes", {
+      const res = await fetch("/api/notes/uploadNotes", {
         method: "POST",
         body: formData,
       });
@@ -101,7 +101,12 @@ export default function UploadNotesPage() {
               >
                 Note Title
               </Label>
-              <Input id="title" type="text" placeholder="Enter note title" />
+              <Input
+                id="title"
+                required
+                type="text"
+                placeholder="Enter note title"
+              />
             </div>
 
             <div>
@@ -133,6 +138,7 @@ export default function UploadNotesPage() {
               </Label>
               <Textarea
                 id="description"
+                required
                 placeholder="Write a short description about the notes..."
                 rows={4}
               />

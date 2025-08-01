@@ -10,7 +10,7 @@ export async function POST(req) {
 
     const db = await getDBConnection();
     const [existing] = await db.execute(
-      "SELECT name, email FROM users WHERE id = ?",
+      "SELECT id, name, email FROM users WHERE id = ?",
       [userId]
     );
 
