@@ -6,7 +6,7 @@ export default function Slider({ title, Notes }) {
     <>
       <div className="w-[90%] mx-auto my-2">
         <h2 className=" text-4xl font-medium mb-8">{title}</h2>
-        <div className="flex gap-4 overflow-x-auto px-4 pb-8">
+        <div className="flex gap-4 overflow-x-auto px-4 pb-8 scrollbar-x-hidden">
           {Notes?.map((note, index) => (
             <div key={index}>
               <NoteCard note={note} />

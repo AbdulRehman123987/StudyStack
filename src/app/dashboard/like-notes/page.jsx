@@ -9,29 +9,31 @@ export default function LikeNotes() {
   const { allNotes } = useContext(NoteContext);
   const { currentUser } = useContext(AuthContext);
   const [likedNotes, setLikedNotes] = useState([]);
+  const fetchLikedNotes = async () => {
+    try {
+      const response = await fetch(`/api/notes/like/${currentUser.id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch liked notes");
+      }
+
+      const data = await response.json();
+      console.log("Liked notes:", data);
+      setLikedNotes(data);
+    } catch (error) {
+      console.error("Error fetching liked notes:", error);
+    }
+  };
+  const handleNoteDelete = (deletedNoteId) => {
+    fetchLikedNotes();
+  };
 
   useEffect(() => {
-    const fetchLikedNotes = async () => {
-      try {
-        const response = await fetch(`/api/notes/like/${currentUser.id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch liked notes");
-        }
-
-        const data = await response.json();
-        console.log("Liked notes:", data);
-        setLikedNotes(data);
-      } catch (error) {
-        console.error("Error fetching liked notes:", error);
-      }
-    };
-
     if (currentUser?.id) {
       fetchLikedNotes();
     }
@@ -44,7 +46,12 @@ export default function LikeNotes() {
         {likedNotes &&
           likedNotes.map((note, index) => (
             <div key={index}>
-              <NoteCard note={note} isliked={true} />
+              <NoteCard
+                note={note}
+                isliked={true}
+                currentUser={currentUser}
+                onDelete={handleNoteDelete}
+              />
             </div>
           ))}
       </div>

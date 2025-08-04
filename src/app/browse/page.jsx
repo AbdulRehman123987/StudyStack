@@ -10,7 +10,7 @@ export default function Browse() {
   const scienceNotes = allNotes.filter((note) => note.subject == "science");
   const mathNotes = allNotes.filter((note) => note.subject == "math");
   const historyNotes = allNotes.filter((note) => note.subject == "history");
-  const computerNotes = allNotes.filter((note) => note.subject == "history");
+  const computerNotes = allNotes.filter((note) => note.subject == "cs");
   return (
     <>
       <AutoCarousel />
