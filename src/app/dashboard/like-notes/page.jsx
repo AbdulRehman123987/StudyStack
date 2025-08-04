@@ -29,7 +29,7 @@ export default function LikeNotes() {
       console.error("Error fetching liked notes:", error);
     }
   };
-  const handleNoteDelete = (deletedNoteId) => {
+  const handleRemoveLike = (deletedNoteId) => {
     fetchLikedNotes();
   };
 
@@ -42,7 +42,7 @@ export default function LikeNotes() {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4">My Liked Notes</h2>
-      <div className="flex gap-4 flex-wrap">
+      <div className="w-full h-[400px] overflow-y-auto flex gap-2 flex-wrap">
         {likedNotes &&
           likedNotes.map((note, index) => (
             <div key={index}>
@@ -50,7 +50,7 @@ export default function LikeNotes() {
                 note={note}
                 isliked={true}
                 currentUser={currentUser}
-                onDelete={handleNoteDelete}
+                onRemoveLike={handleRemoveLike}
               />
             </div>
           ))}

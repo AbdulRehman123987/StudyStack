@@ -43,7 +43,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Top Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Total Notes</CardTitle>
@@ -59,15 +59,6 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">{likedNotes?.length || 0}</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Profile Views</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-3xl font-bold">132</p>
           </CardContent>
         </Card>
       </div>

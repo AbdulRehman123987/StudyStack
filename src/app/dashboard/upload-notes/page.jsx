@@ -74,7 +74,6 @@ export default function UploadNotesPage() {
         e.target.reset();
         setSubject("");
         setSelectedFiles(null);
-        alert("Notes uploaded successfully!");
       } else {
         alert("Upload failed: " + data.error);
       }
@@ -88,7 +87,7 @@ export default function UploadNotesPage() {
   return (
     <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-10">
       {loading ? (
-        <Loader delay={100} />
+        <Loader delay={200} />
       ) : (
         <>
           <h2 className="text-2xl font-semibold mb-6">Upload Notes</h2>

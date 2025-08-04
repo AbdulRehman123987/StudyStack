@@ -1,14 +1,23 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default function NoteCard({ note, isliked, currentUser, onDelete }) {
+export default function NoteCard({
+  note,
+  isliked,
+  currentUser,
+  onRemoveLike,
+  uploadedByMe,
+  onDeleteNote,
+}) {
+  const router = useRouter();
   const getShortDescription = (text) => {
     if (!text) return "";
     return text.length > 100 ? text.slice(0, 100) + "..." : text;
   };
 
-  const handleDelete = async (e) => {
+  const handleRemoveLikePro = async (e) => {
     e.preventDefault();
 
     try {
@@ -22,13 +31,37 @@ export default function NoteCard({ note, isliked, currentUser, onDelete }) {
       const data = await response.json();
 
       if (data.success) {
-        onDelete?.(note.id);
+        onRemoveLike?.(note.id);
         console.log("Note unliked successfully");
       } else {
         console.error("Failed to unlike note:", data.message);
       }
     } catch (error) {
       console.error("Error while unliking note:", error);
+    }
+  };
+
+  const handleDeletePro = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `/api/notes/delete/${currentUser.id}/${note.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        onDeleteNote?.(note.id);
+        console.log("Note delete successfully");
+      } else {
+        console.error("Failed to delete note:", data.message);
+      }
+    } catch (error) {
+      console.error("Error while delete note:", error);
     }
   };
 
@@ -39,7 +72,20 @@ export default function NoteCard({ note, isliked, currentUser, onDelete }) {
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
-            handleDelete(e);
+            handleRemoveLikePro(e);
+          }}
+          className="w-[40px] h-[40px] flex justify-center items-center rounded-3xl bg-red-700 absolute top-4 right-4 cursor-pointer"
+        >
+          <Trash2 />
+        </div>
+      )}
+
+      {uploadedByMe && (
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            handleDeletePro(e);
           }}
           className="w-[40px] h-[40px] flex justify-center items-center rounded-3xl bg-red-700 absolute top-4 right-4 cursor-pointer"
         >
