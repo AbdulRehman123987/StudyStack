@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { NoteContext } from "@/context/NoteContext";
 import { AuthContext } from "@/context/AuthContext";
 import { jsPDF } from "jspdf";
+import { toast } from "sonner";
 import {
   Carousel,
   CarouselContent,
@@ -74,6 +75,15 @@ export default function NoteViewPage() {
       body: JSON.stringify({ userId: currentUser.id, noteId: note.id }),
       headers: { "Content-Type": "application/json" },
     });
+    toast("Your message", {
+      duration: 2000,
+      position: "top-right",
+      description: "Added to your liked notes",
+      style: {
+        backgroundColor: "#000000", // Custom background color
+        color: "#fff",
+      },
+    });
   };
 
   const handleCommentSubmit = async () => {
@@ -88,7 +98,12 @@ export default function NoteViewPage() {
     setNewComment("");
   };
 
-  if (!note) return <div className="p-4">Loading...</div>;
+  if (!note)
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <img src="/loading.png" alt="loader-image" />
+      </div>
+    );
 
   return (
     <div className="w-[90%] mx-auto p-4">
