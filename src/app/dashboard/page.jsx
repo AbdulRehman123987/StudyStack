@@ -66,11 +66,21 @@ export default function DashboardPage() {
       <div>
         <h2 className="text-2xl font-semibold mb-4">My Uploads</h2>
         <div className="w-full h-[400px] overflow-y-auto flex gap-2 flex-wrap">
-          {myNotes?.map((note, index) => (
-            <div key={index}>
-              <NoteCard note={note} />
+          {myNotes.length > 0 ? (
+            myNotes.map((note, index) => (
+              <div key={index}>
+                <NoteCard note={note} />
+              </div>
+            ))
+          ) : (
+            <div className="w-full h-[300px] flex justify-center items-center">
+              <img
+                src="/empty.png"
+                alt="empty-image"
+                className="ww-full h-full object-contain"
+              />
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ const navItems = [
   { name: "My Notes", href: "/dashboard/notes", icon: FileText },
   { name: "Like Notes", href: "/dashboard/like-notes", icon: Heart },
   { name: "Upload Notes", href: "/dashboard/upload-notes", icon: Upload },
-  { name: "Profile", href: "/dashboard/profile", icon: User },
+  // { name: "Profile", href: "/dashboard/profile", icon: User },
 ];
 
 export default function Sidebar() {

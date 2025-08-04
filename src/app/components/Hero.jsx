@@ -1,7 +1,11 @@
+"use client";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Hero() {
+  const { isAuthenticated, currentUser } = useContext(AuthContext);
   return (
     <>
       <div className="flex justify-around items-center flex-wrap gap-3 py-4 ">
@@ -15,9 +19,15 @@ export default function Hero() {
             easy for learners to find and download helpful materials to support
             their studies — completely free.
           </p>
-          <Link href="/auth/signup">
-            <Button className=" cursor-pointer my-4">Sign Up</Button>
-          </Link>
+          {isAuthenticated ? (
+            <Link href="/dashboard">
+              <Button className=" cursor-pointer my-4">Dashboard</Button>
+            </Link>
+          ) : (
+            <Link href="/auth/signup">
+              <Button className=" cursor-pointer my-4">Sign Up</Button>
+            </Link>
+          )}
         </div>
       </div>
     </>

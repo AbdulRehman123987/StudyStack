@@ -43,7 +43,7 @@ export default function LikeNotes() {
     <div>
       <h2 className="text-2xl font-semibold mb-4">My Liked Notes</h2>
       <div className="w-full h-[400px] overflow-y-auto flex gap-2 flex-wrap">
-        {likedNotes &&
+        {likedNotes && likedNotes.length > 0 ? (
           likedNotes.map((note, index) => (
             <div key={index}>
               <NoteCard
@@ -53,7 +53,16 @@ export default function LikeNotes() {
                 onRemoveLike={handleRemoveLike}
               />
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="w-full h-[300px] flex justify-center items-center">
+            <img
+              src="/empty.png"
+              alt="empty-image"
+              className="ww-full h-full object-contain"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
