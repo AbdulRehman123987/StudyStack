@@ -49,5 +49,15 @@ StudyStack is made for:
 
 ---
 
+## 👨‍💻 Developed By
+
+**Abdul Rehman**  
+
+📫 Reach me:
+- LinkedIn:www.linkedin.com/in/abdul-rehman-693b2b280
+- Portfolio: abdulrehmandev.vercel.app
+- Email:rehmanmirza458@gmail.com.com
+
+
 ## 📸 Screenshots
 
