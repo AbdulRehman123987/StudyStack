@@ -42,7 +42,7 @@ StudyStack is made for:
 
 - ⚡ [Next.js](https://nextjs.org/) – React framework for server-side rendering
 - 💅 Tailwind CSS – Utility-first CSS framework
-- 🧠 MongoDB – NoSQL database for storing notes and user data
+- 🧠 MySQL database for storing notes and user data
 - 🔐 JWT / NextAuth / Cookies – For authentication (choose based on your setup)
 - ☁️ Cloudinary or local storage – For file uploads (notes)
 - 📦 Vercel – Hosting and deployment
