@@ -1,41 +1,53 @@
-<<<<<<< HEAD
-# StudyStack
-StudyStack is a collaborative web platform for uploading and downloading study notes, summaries, and educational resources. Students can easily share their learning materials and access helpful content contributed by others.
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 StudyStack
 
-## Getting Started
+**StudyStack** is a modern, student-focused web platform built with **Next.js**, designed to empower learners to share, explore, and download notes. It provides a seamless and user-friendly interface for uploading and browsing educational content, along with essential features like **login/signup**, **dashboard**, and a polished **landing page**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ✅ **User Authentication**
+  - Signup/Login functionality
+  - Secure session handling
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- 🗂️ **Dashboard**
+  - Personalized user dashboard
+  - Upload and manage notes
+  - View download and like stats
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 📄 **Notes Sharing**
+  - Upload notes with metadata (title, subject, description, etc.)
+  - Like, download, and browse community-shared notes
 
-## Learn More
+- 🌐 **Landing Page**
+  - Clean, modern, and responsive design
+  - Highlights platform features and benefits
 
-To learn more about Next.js, take a look at the following resources:
+- 🔍 **Search & Browse**
+  - Search notes by subject, keywords, and filters
+  - Browse trending and recent uploads
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧑‍🎓 Who is it for?
 
-## Deploy on Vercel
+StudyStack is made for:
+- Students looking to **share and access class notes**
+- Educators who want to **contribute helpful resources**
+- Anyone who needs a reliable platform to store and find academic material
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> b0a4043 (Initial commit from Create Next App)
+## 🛠️ Built With
+
+- ⚡ [Next.js](https://nextjs.org/) – React framework for server-side rendering
+- 💅 Tailwind CSS – Utility-first CSS framework
+- 🧠 MongoDB – NoSQL database for storing notes and user data
+- 🔐 JWT / NextAuth / Cookies – For authentication (choose based on your setup)
+- ☁️ Cloudinary or local storage – For file uploads (notes)
+- 📦 Vercel – Hosting and deployment
+
+---
+
+## 📸 Screenshots
+
