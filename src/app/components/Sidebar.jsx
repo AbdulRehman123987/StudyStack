@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Home, User, FileText, Upload, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
@@ -16,12 +16,13 @@ const navItems = [
   // { name: "Profile", href: "/dashboard/profile", icon: User },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ setLoading }) {
   const router = useRouter();
   const { refreshAuth, getUser, currentUser } = useContext(AuthContext);
 
   const handleLogout = async () => {
     try {
+      setLoading(true);
       await fetch("/api/auth/logout");
       refreshAuth();
       localStorage.removeItem("userID");
@@ -29,6 +30,8 @@ export default function Sidebar() {
       router.push("/auth/login");
     } catch (error) {
       console.log("Logout error", error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
