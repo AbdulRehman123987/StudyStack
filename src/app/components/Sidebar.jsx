@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home, User, FileText, Upload, Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Home, FileText, Upload, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
@@ -13,7 +12,6 @@ const navItems = [
   { name: "My Notes", href: "/dashboard/notes", icon: FileText },
   { name: "Like Notes", href: "/dashboard/like-notes", icon: Heart },
   { name: "Upload Notes", href: "/dashboard/upload-notes", icon: Upload },
-  // { name: "Profile", href: "/dashboard/profile", icon: User },
 ];
 
 export default function Sidebar({ setLoading }) {
