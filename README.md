@@ -58,6 +58,6 @@ StudyStack is made for:
 - Portfolio: abdulrehmandev.vercel.app
 - Email:rehmanmirza458@gmail.com.com
 
-
 ## 📸 Screenshots
+![Homepage Screenshot](./public/studystack.png)
 
