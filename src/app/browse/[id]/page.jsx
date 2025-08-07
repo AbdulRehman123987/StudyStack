@@ -80,7 +80,7 @@ export default function NoteViewPage() {
       position: "top-right",
       description: "Added to your liked notes",
       style: {
-        backgroundColor: "#000000", // Custom background color
+        backgroundColor: "#000000",
         color: "#fff",
       },
     });

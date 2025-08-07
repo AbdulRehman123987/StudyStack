@@ -13,7 +13,7 @@ export default function ProfilePage() {
     name: "John Doe",
     email: "john.doe@example.com",
     bio: "Frontend Developer | React Enthusiast | UI Designer",
-    image: "", // default image path or base64
+    image: "",
   });
 
   const handleImageChange = (e) => {

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // optional: for social buttons
-import { Instagram, Music2 } from "lucide-react"; // or use your own icons
+import { Button } from "@/components/ui/button";
+import { Instagram, Music2 } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
